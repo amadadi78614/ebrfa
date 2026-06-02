@@ -1,0 +1,152 @@
+import { Line, Bar, Doughnut, Radar } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale, LinearScale, PointElement, LineElement,
+  BarElement, ArcElement, RadialLinearScale,
+  Title, Tooltip, Legend, Filler,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale, LinearScale, PointElement, LineElement,
+  BarElement, ArcElement, RadialLinearScale,
+  Title, Tooltip, Legend, Filler
+);
+
+const chartDefaults = {
+  plugins: { legend: { labels: { color: 'rgba(255,255,255,0.5)', font: { size: 11 } } } },
+  scales: {
+    x: { ticks: { color: 'rgba(255,255,255,0.4)', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+    y: { ticks: { color: 'rgba(255,255,255,0.4)', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+  },
+  responsive: true,
+  maintainAspectRatio: false,
+};
+
+const cashflowData = {
+  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+  datasets: [
+    {
+      label: 'Actual Cashflow (Rm)',
+      data: [142, 138, 155, 149, 163, null, null, null, null],
+      borderColor: '#00d4ff',
+      backgroundColor: 'rgba(0,212,255,0.08)',
+      pointBackgroundColor: '#00d4ff',
+      tension: 0.4,
+      fill: true,
+    },
+    {
+      label: 'AI Forecast (Rm)',
+      data: [null, null, null, null, 163, 171, 168, 179, 185],
+      borderColor: '#00e5a0',
+      backgroundColor: 'rgba(0,229,160,0.05)',
+      borderDash: [5, 5],
+      pointBackgroundColor: '#00e5a0',
+      tension: 0.4,
+      fill: false,
+    },
+  ],
+};
+
+const openItemData = {
+  labels: ['Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May'],
+  datasets: [
+    {
+      label: 'Open Items (count)',
+      data: [1240, 1180, 1090, 980, 870, 760, 680, 590, 480, 390, 310],
+      backgroundColor: 'rgba(0,102,204,0.6)',
+      borderColor: '#0066cc',
+      borderRadius: 6,
+      borderWidth: 1,
+    },
+  ],
+};
+
+const benefitsData = {
+  labels: ['Hours Saved', 'Error Reduction', 'Cycle Time', 'Compliance', 'Forecast Accuracy'],
+  datasets: [
+    {
+      data: [35, 20, 18, 14, 13],
+      backgroundColor: [
+        'rgba(0,212,255,0.7)',
+        'rgba(0,102,204,0.7)',
+        'rgba(0,229,160,0.7)',
+        'rgba(255,184,0,0.7)',
+        'rgba(110,179,255,0.7)',
+      ],
+      borderColor: 'rgba(255,255,255,0.05)',
+      borderWidth: 2,
+    },
+  ],
+};
+
+const aiAdoptionData = {
+  labels: ['Process Automation', 'Predictive Analytics', 'Agentic Workflows', 'AI Reporting', 'Risk Intelligence', 'Compliance AI'],
+  datasets: [
+    {
+      label: 'Current State',
+      data: [70, 45, 20, 50, 35, 30],
+      borderColor: '#0066cc',
+      backgroundColor: 'rgba(0,102,204,0.12)',
+      pointBackgroundColor: '#0066cc',
+    },
+    {
+      label: 'FY27 Target',
+      data: [90, 80, 70, 85, 75, 70],
+      borderColor: '#00d4ff',
+      backgroundColor: 'rgba(0,212,255,0.1)',
+      pointBackgroundColor: '#00d4ff',
+    },
+  ],
+};
+
+export default function AnalyticsCentre() {
+  const noScaleOpts = {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: 'rgba(255,255,255,0.5)', font: { size: 11 } } } },
+  };
+  const radarOpts = {
+    ...noScaleOpts,
+    scales: {
+      r: {
+        ticks: { color: 'rgba(255,255,255,0.3)', backdropColor: 'transparent', font: { size: 9 } },
+        grid: { color: 'rgba(255,255,255,0.06)' },
+        pointLabels: { color: 'rgba(255,255,255,0.5)', font: { size: 10 } },
+      },
+    },
+  };
+
+  return (
+    <section id="analytics" className="section">
+      <div className="section-eyebrow">Module 05</div>
+      <h2 className="section-title">Analytics Centre</h2>
+      <p className="section-sub">Data-driven intelligence — turning finance operations into predictive insight.</p>
+
+      <div className="grid-2" style={{ gap: 20 }}>
+        <div className="chart-card">
+          <div className="chart-title">Cashflow Forecast — Actual vs AI Prediction</div>
+          <div style={{ height: 220 }}>
+            <Line data={cashflowData} options={chartDefaults} />
+          </div>
+        </div>
+        <div className="chart-card">
+          <div className="chart-title">Open Item Reduction Campaign</div>
+          <div style={{ height: 220 }}>
+            <Bar data={openItemData} options={chartDefaults} />
+          </div>
+        </div>
+        <div className="chart-card">
+          <div className="chart-title">Automation Benefit Distribution</div>
+          <div style={{ height: 220, display: 'flex', justifyContent: 'center' }}>
+            <Doughnut data={benefitsData} options={noScaleOpts} />
+          </div>
+        </div>
+        <div className="chart-card">
+          <div className="chart-title">AI Adoption — Current vs FY27 Target</div>
+          <div style={{ height: 220 }}>
+            <Radar data={aiAdoptionData} options={radarOpts} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
