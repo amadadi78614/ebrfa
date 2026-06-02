@@ -1,54 +1,12 @@
 import { Clock, TrendingDown, BarChart2, ShieldCheck, Target, AlertTriangle } from 'lucide-react';
 
 const tiles = [
-  {
-    icon: Clock,
-    num: '1,200+',
-    label: 'Hours Saved Annually',
-    sub: 'Across BOT and automation portfolio',
-    color: '#00d4ff',
-    bg: 'rgba(0,212,255,0.08)',
-  },
-  {
-    icon: TrendingDown,
-    num: '65%',
-    label: 'Reporting Time Reduced',
-    sub: 'SLA, GL, and cashflow reporting',
-    color: '#00e5a0',
-    bg: 'rgba(0,229,160,0.08)',
-  },
-  {
-    icon: BarChart2,
-    num: '60%',
-    label: 'Open Items Reduced',
-    sub: 'Automated matching campaign',
-    color: '#6eb3ff',
-    bg: 'rgba(110,179,255,0.08)',
-  },
-  {
-    icon: ShieldCheck,
-    num: '40%',
-    label: 'Controls Strengthened',
-    sub: 'AI-monitored compliance checks',
-    color: '#c084fc',
-    bg: 'rgba(192,132,252,0.08)',
-  },
-  {
-    icon: Target,
-    num: '92%',
-    label: 'Forecast Accuracy',
-    sub: 'Cashflow AI model — 13-week horizon',
-    color: '#ffb800',
-    bg: 'rgba(255,184,0,0.08)',
-  },
-  {
-    icon: AlertTriangle,
-    num: '75%',
-    label: 'Risk Reduced',
-    sub: 'Payment fraud, duplicate, VAT error',
-    color: '#00e5a0',
-    bg: 'rgba(0,229,160,0.08)',
-  },
+  { icon: Clock, num: '1,200+', label: 'Hours Saved Annually', sub: 'Across BOT and automation portfolio', color: '#0066cc', bg: '#e8f0fb' },
+  { icon: TrendingDown, num: '65%', label: 'Reporting Time Reduced', sub: 'SLA, GL, and cashflow reporting', color: '#059669', bg: '#ecfdf5' },
+  { icon: BarChart2, num: '60%', label: 'Open Items Reduced', sub: 'Automated matching campaign', color: '#0891b2', bg: '#ecfeff' },
+  { icon: ShieldCheck, num: '40%', label: 'Controls Strengthened', sub: 'AI-monitored compliance checks', color: '#7c3aed', bg: '#f5f3ff' },
+  { icon: Target, num: '92%', label: 'Forecast Accuracy', sub: 'Cashflow AI model — 13-week horizon', color: '#d97706', bg: '#fffbeb' },
+  { icon: AlertTriangle, num: '75%', label: 'Risk Reduced', sub: 'Payment fraud, duplicate, VAT error', color: '#dc2626', bg: '#fef2f2' },
 ];
 
 export default function ValueRealisation() {
@@ -62,22 +20,22 @@ export default function ValueRealisation() {
         {tiles.map((t, i) => {
           const Icon = t.icon;
           return (
-            <div key={i} className="value-tile" style={{ background: t.bg, borderColor: `${t.color}20` }}>
-              <div className="value-tile-icon" style={{ background: `${t.color}15`, border: `1px solid ${t.color}25` }}>
+            <div key={i} className="value-tile" style={{ borderTop: `3px solid ${t.color}` }}>
+              <div className="value-tile-icon" style={{ background: t.bg }}>
                 <Icon size={20} color={t.color} />
               </div>
               <div className="value-tile-num" style={{ color: t.color }}>{t.num}</div>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: 'var(--white)', marginBottom: 6, letterSpacing: '0.03em' }}>{t.label}</div>
-              <div className="value-tile-label">{t.sub}</div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--navy)', marginBottom: 4 }}>{t.label}</div>
+              <div className="value-tile-sub">{t.sub}</div>
             </div>
           );
         })}
       </div>
 
-      <div style={{ marginTop: 32, background: 'linear-gradient(135deg, rgba(0,102,204,0.1), rgba(0,212,255,0.05))', border: '1px solid rgba(0,212,255,0.15)', borderRadius: 14, padding: '28px 32px', textAlign: 'center' }}>
-        <div style={{ fontSize: 9, letterSpacing: '0.2em', color: 'var(--cyan)', textTransform: 'uppercase', fontFamily: 'var(--font-display)', marginBottom: 12 }}>Total Programme Value Statement</div>
-        <div style={{ fontFamily: 'var(--font-display)', fontSize: 32, fontWeight: 900, color: 'var(--white)', marginBottom: 10 }}>Decades of Measurable Impact</div>
-        <p style={{ fontSize: 13, color: 'var(--white-40)', maxWidth: 600, margin: '0 auto', lineHeight: 1.7 }}>
+      <div style={{ marginTop: 28, background: 'linear-gradient(135deg, #e8f0fb, #f0f7ff)', border: '1px solid #c7ddf8', borderRadius: 14, padding: '28px 32px', textAlign: 'center' }}>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: 'var(--blue)', textTransform: 'uppercase', marginBottom: 10 }}>Total Programme Value Statement</div>
+        <div style={{ fontFamily: 'var(--font-display)', fontSize: 28, color: 'var(--navy)', marginBottom: 10 }}>A Decade of Measurable Impact</div>
+        <p style={{ fontSize: 13, color: 'var(--text-secondary)', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
           Every initiative in the transformation portfolio is designed with measurable outcomes. From BOT-driven hour savings to AI-powered risk reduction — value is tracked, reported, and continuously improved.
         </p>
       </div>
